@@ -1,0 +1,32 @@
+name: Compile LaTeX CV
+
+on:
+  push:
+    tags:
+      - '*'  # Triggers only when a tag is pushed (e.g., v1.0, latest-cv)
+  workflow_dispatch:  # Allows manual triggering if needed
+
+jobs:
+  compile-latex:
+    runs-on: ubuntu-latest
+    container: texlive/texlive:latest
+
+    steps:    
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        run: |
+          pdflatex -interaction=nonstopmode cv.tex  # Generate auxiliary files
+          biber cv # Process bibliography 
+          pdflatex -interaction=nonstopmode cv.tex  # Read bibliography data
+          pdflatex -interaction=nonstopmode cv.tex # One more for good luck
+
+      - name: Upload to GitHub Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: cv.pdf
+          tag_name: ${{ github.ref_name }}
+          release_name: "CV (Version: ${{ github.ref_name }})"
+          draft: false
+          prerelease: false
