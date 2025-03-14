@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}       % set main text size
+\usepackage[letterpaper,                % set paper size to letterpaper. change to a4paper for resumes outside of North America
+top=0.5in,                          % specify top page margin
+bottom=0.5in,                       % specify bottom page margin
+left=0.5in,                         % specify left page margin
+right=0.5in]{geometry}              % specify right page margin
+                       
+\usepackage{XCharter}               % set font. comment this line out if you want to use the default LaTeX font Computer Modern
+\usepackage[T1]{fontenc}            % output encoding
+\usepackage[utf8]{inputenc}         % input encoding
+\usepackage{enumitem}               % enable lists for bullet points: itemize and \item
+\usepackage[hidelinks]{hyperref}    % format hyperlinks
+\usepackage{titlesec}               % enable section title customization
+\raggedright                        % disable text justification
+\pagestyle{empty}                   % disable page numbering
+
+% bibliography
+\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex} % Sorting=none keeps order as cited
+
+\renewbibmacro{in:}{} % Remove "In:" from references
+
+\renewbibmacro*{title}{%
+  \ifboolexpr{ test {\iffieldundef{url}} } % Check if URL exists
+    {\printfield{title}} % If no URL, just print the title normally
+    {\href{\thefield{url}}{\printfield{title}}} % Otherwise, make it a hyperlink
+}
+
+% Suppress URL field in the bibliography section
+\renewbibmacro*{url}{}
+
+\bibliography{bibliography}
+
+% ensure PDF output will be all-Unicode and machine-readable
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% format section headings: bolding, size, white space above and below
+\titleformat{\section}{\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule\vspace{-6.5pt}]
+
+% format bullet points: size, white space above and below, white space between bullets
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\setlist[itemize]{itemsep=-2pt, leftmargin=12pt, topsep=7pt} %%% Test various topsep values to fix vertical spacing errors
+
+% resume starts here
+\begin{document}
+
+% name
+\centerline{\Huge Brendan Devenney}
+
+\vspace{5pt}
+
+% contact information
+\centerline{\href{mailto:hey@devenney.io}{hey@devenney.io} | \href{https://devenney.io}{devenney.io} | \href{https://github.com/devenney}{github.com/devenney}}
+
+\vspace{-10pt}
+
+% experience section
+\section*{Experience}
+
+\textbf{Head of Engineering,} \href{https://form3.tech/}{Form3} -- Remote \hfill Nov 2022 -- Present \\
+\vspace{-9pt}
+\begin{itemize}
+  \item Led the end-to-end delivery of SEPA Instant, Credit Transfer, and Direct Debit, enabling brands like Klarna\cite{klarna} with direct scheme access to STEP2 and RT1, processing SEPA payments at scale for 150M+ customers.  
+  \item Spearheaded a novel SEPA Instant and Credit Transfer access model for non-banks in collaboration with Barclays, expanding fintech access to real-time payments and liquidity services.  
+  \item Drove the vision and development of Swift as a Service\cite{swift}, the world's first cloud-native Swift connectivity solution, eliminating legacy infrastructure barriers for financial institutions.  
+  \item Optimized team efficiency and strategy, reducing costs by 50\% while exceeding customer SLAs.        
+\end{itemize}
+
+\textbf{Lead Software Engineer,} \href{https://form.tech/}{Form3} -- Remote \hfill Jul 2021 -- Nov 2022 \\
+\vspace{-9pt}
+\begin{itemize}
+  \item Developed and scaled highly available message brokers for Mastercard’s PayPort+\cite{payport}, ensuring real-time Faster Payments connectivity for UK financial institutions.
+\end{itemize}
+
+\textbf{Senior Software Engineer,} \href{https://form3.tech/}{Form3} -- Remote \hfill May 2019 -- Jul 2021 \\
+\vspace{6.5pt}
+
+\textbf{Cloud Improvement Engineer,} \href{https://eviden.com/about-us/legacy-brands/cloudreach/}{Cloudreach} -- Edinburgh, UK \hfill Mar 2018 -- May 2019 \\
+\vspace{6.5pt}
+
+\textbf{Software Engineer,} \href{https://approov.io/}{Approov (\textit{FKA CriticalBlue})} -- Edinburgh, UK \hfill Jul 2013 -- Feb 2018 \\ 
+\vspace{-9pt}
+
+% \textbf{Job Title,} \href{https://www.fstl1992.com/}{Company} -- City, ST \hfill XXXX -- XXXX \\
+% \vspace{-9pt}
+
+% skills section
+\section*{Skills}
+\textbf{Leadership:} Engineering Strategy, Sustainable Workload Management, Incident Response, Operational Maturity \\
+\textbf{Software Development:} Go, Python, Distributed Systems, API Design, Event-Driven Architectures \\
+\textbf{Infrastructure \& Reliability:} Cloud-Native, Kubernetes, Terraform, High-Availability Systems, Observability \\
+\textbf{Payments \& Financial Systems:} FPS, SEPA, Swift, Real-Time Payments, ISO 20022, Scheme Connectivity
+
+
+\vspace{-6.5pt}
+
+% projects section
+\section*{Projects}
+\begin{itemize}
+  \item \underline{\href{https://github.com/oneirism/reverie}{Reverie}:} Tabletop RPG campaign tracker built for game masters. Built with Django.
+  \item \underline{\href{https://github.com/oneirism/dicebot}{Dicebot}:} Serverless Telegram bot for polyhedral dice rolling. Built with Python.
+\end{itemize}
+
+\vspace{-18.5pt}
+
+% education section
+\section*{Education}
+\textbf{Edinburgh Napier University} -- BEng Software Engineering -- \textit{First Class Honours, Class Medal} \hfill 2016 \\
+
+\vspace{-6.5pt}
+
+% bibliography
+\printbibliography[title=Citations]
+
+\end{document}
