@@ -3,8 +3,14 @@ name: Compile LaTeX CV
 on:
   push:
     tags:
-      - '*'  # Triggers only when a tag is pushed (e.g., v1.0, latest-cv)
+      - '*'  # Runs on all tags
+  pull_request:  
+    branches:
+      - '**'  # Runs on all PRs
   workflow_dispatch:  # Allows manual triggering if needed
+
+permissions:
+  contents: write  # Required for uploading release assets
 
 jobs:
   compile-latex:
@@ -15,18 +21,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
-        run: |
-          pdflatex -interaction=nonstopmode cv.tex  # Generate auxiliary files
-          biber cv # Process bibliography 
-          pdflatex -interaction=nonstopmode cv.tex  # Read bibliography data
-          pdflatex -interaction=nonstopmode cv.tex # One more for good luck
+      - name: Compile CV using latexmk
+        run: latexmk -pdf -interaction=nonstopmode -shell-escape cv.tex
 
-      - name: Upload to GitHub Releases
-        uses: softprops/action-gh-release@v1
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: cv.pdf
-          tag_name: ${{ github.ref_name }}
-          release_name: "CV (Version: ${{ github.ref_name }})"
-          draft: false
-          prerelease: false
+          generate_release_notes: true
+          make_latest: true
