@@ -11,6 +11,7 @@ right=0.5in]{geometry}              % specify right page margin
 \usepackage{enumitem}               % enable lists for bullet points: itemize and \item
 \usepackage[hidelinks]{hyperref}    % format hyperlinks
 \usepackage{titlesec}               % enable section title customization
+\usepackage{mfirstuc}               % enable uppercasing first letter of references
 \raggedright                        % disable text justification
 \pagestyle{empty}                   % disable page numbering
 
@@ -25,10 +26,13 @@ right=0.5in]{geometry}              % specify right page margin
     {\href{\thefield{url}}{\printfield{title}}} % Otherwise, make it a hyperlink
 }
 
-% Suppress URL field in the bibliography section
-\renewbibmacro*{url}{}
-
 \bibliography{bibliography}
+
+\DeclareCiteCommand{\citea}
+  {\boolfalse{citetracker}\boolfalse{pagetracker}\usebibmacro{prenote}}
+  {\underline{\href{\thefield{url}}{\strfield{subtitle}}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
 
 % ensure PDF output will be all-Unicode and machine-readable
 \input{glyphtounicode}
@@ -60,46 +64,51 @@ right=0.5in]{geometry}              % specify right page margin
 \textbf{Head of Engineering,} \href{https://form3.tech/}{Form3} -- Remote \hfill Nov 2022 -- Present \\
 \vspace{-9pt}
 \begin{itemize}
-  \item Led strategy and delivery for SEPA Instant, Credit Transfer, and Direct Debit, enabling brands like Klarna\cite{klarna} with direct scheme access to STEP2 and RT1, processing SEPA payments at scale for 150M+ customers.
-  \item Drove the vision and development of Swift as a Service\cite{swift}, the world's first cloud-native Swift connectivity solution, eliminating legacy infrastructure barriers for financial institutions.           
-  \item Spearheaded a new SEPA Instant and Credit Transfer model with Barclays, expanding fintech access to real-time payments and liquidity services without requiring a banking license.  
-  \item Managed and scaled a 25-engineer team across three squads: oversaw hiring, mentored via the GROW model, served as a key technical liaison for customers and vendors, and drove OKR alignment. 
-  \item Optimized engineering budgets, reducing costs by 50\% while exceeding customer SLAs and ensuring operational resilience. \\
+  \item Led technical strategy and delivery of SEPA Instant, Credit Transfer, and Direct Debit, via RT1 and STEP2. \\
+  \item Processed \citea{klarna} at scale for 150M+ customers across more than 500,000 merchants. \\
+  \item Drove the vision and development of \citea{swift}, a novel cloud-native Swift connectivity solution. \\
+  \item Spearheaded a new SEPA liqudity model with \citea{barclays}, expanding fintech access to real-time payments. \\
+  \item Managed and scaled a 25-engineer team across three squads, serving as a manager-of-managers. \\
+  \item Owned end-to-end hiring, mentored via the GROW model, and liaised with customers, vendors, and C-suite. \\
+  \item Optimised engineering budgets, reducing costs by 50\% while exceeding customer SLAs. \\
 \end{itemize}
 
 \textbf{Lead Software Engineer,} \href{https://form.tech/}{Form3} -- Remote \hfill Jul 2021 -- Nov 2022 \\
 \vspace{-9pt}
 \begin{itemize}
-  \item Architected and led development of highly available message brokers for Mastercard’s PayPort+\cite{payport}.
+  \item Architected and led development of highly available message brokers for \citea{payport}. \\
   \item Collaborated cross-functionally with enterprise customers to seamlessly migrate Faster Payments infrastructure. \\
 \end{itemize}
 
 \textbf{Senior Software Engineer,} \href{https://form3.tech/}{Form3} -- Remote \hfill May 2019 -- Jul 2021 \\
 \vspace{-9pt}
 \begin{itemize}
-  \item Contributed to Form3's platform as a backend engineer using technologies such as Go and Terraform.
+  \item Contributed to Form3's platform as a backend engineer. \\
 \end{itemize}
 
 \textbf{Cloud Improvement Engineer,} \href{https://eviden.com/about-us/legacy-brands/cloudreach/}{Cloudreach} -- Edinburgh, UK \hfill Mar 2018 -- May 2019 \\
 \vspace{-9pt}
 \begin{itemize}
-  \item Consulted for enterprise clients, coaching Agile methodologies while optimizing cloud architecture.
+  \item Consulted for enterprise clients, coaching Agile methodologies while optimising cloud architecture. \\
 \end{itemize}
 
 \textbf{Software Engineer,} \href{https://approov.io/}{Approov (\textit{FKA CriticalBlue})} -- Edinburgh, UK \hfill Jul 2013 -- Feb 2018 \\ 
-\vspace{-6.5pt}
-
-% \textbf{Job Title,} \href{https://www.fstl1992.com/}{Company} -- City, ST \hfill XXXX -- XXXX \\
-% \vspace{-9pt}
+\vspace{-9pt}
+\begin{itemize}
+  \item Brought a novel Runtime Application Self-Protection (RASP) product to market for \citea{bmw} and \citea{sixt} \\
+\end{itemize}
 
 % skills section
 \section*{Skills}
-\textbf{Leadership:} Engineering Strategy, Performance Management, Incident Response, Operational Maturity \\
-\textbf{Software Development:} Go, Python, Distributed Systems, API Design, Event-Driven Architectures \\
-\textbf{Infrastructure \& Reliability:} Cloud-Native, Kubernetes, Terraform, High-Availability Systems, Observability \\
-\textbf{Payments \& Financial Systems:} FPS, SEPA, Swift, Real-Time Payments, ISO 20022, Scheme Connectivity
+\textbf{Leadership:} Technical Strategy, Performance Management, Reliability Engineering, Scaling Teams \\
+\textbf{Architecture:} API Design, Distributed Systems, Event-Driven Architectures, High-Throughput Messaging \\  
+\textbf{Software Development:} Go, Python, Cloud-Native Development, Defensive Programming, Design Patterns \\
+\textbf{Infrastructure:} Kubernetes, Terraform, Observability, CI/CD, High-Availability Systems, Fault Tolerance \\
+\textbf{Payments:} FPS, SEPA, Swift, Real-Time Payments, ISO 20022, Scheme Connectivity \\
 
 \vspace{-6.5pt}
+
+
 
 % skills section
 \section*{Certifications}
@@ -112,19 +121,22 @@ right=0.5in]{geometry}              % specify right page margin
 % projects section
 \section*{Projects}
 \begin{itemize}
-  \item \underline{\href{https://github.com/oneirism/reverie}{Reverie}:} Tabletop RPG campaign tracker built for game masters. Built with Django.
-  \item \underline{\href{https://github.com/oneirism/dicebot}{Dicebot}:} Serverless Telegram bot for polyhedral dice rolling. Built with Python.
+  \item \underline{\href{https://github.com/oneirism/reverie}{Reverie}:} Tabletop RPG campaign tracker built for game masters, built with Django.
+  \item \underline{\href{https://github.com/oneirism/dicebot}{Dicebot}:} Serverless Telegram bot for polyhedral dice rolling, built with Python.
+  \item Open source contributor to \underline{\href{https://github.com/hashicorp/packer}{Hashicorp Packer}} and \underline{\href{https://github.com/elastic/beats}{Elastic Beats}}.
 \end{itemize}
 
 \vspace{-18.5pt}
 
 % education section
-\section*{Education}
-\textbf{Edinburgh Napier University} -- BEng Software Engineering -- \textit{First Class Honours, Class Medal} \hfill 2016 \\
+\section*{Volunteering}
+\textbf{Stemette Futures} (Education) -- Mentor \hfill Jul 2021 -- Present \\
+\textbf{Empty Kitchens, Full Hearts} (Poverty Alleviation) -- Delivery Driver \hfill Apr 2021 -- Present \\
 
 \vspace{-6.5pt}
 
-% bibliography
-\printbibliography[title=Citations]
+% education section
+\section*{Education}
+\textbf{Edinburgh Napier University} -- BEng Software Engineering -- \textit{First Class Honours, Class Medal} \hfill 2016 \\
 
 \end{document}
