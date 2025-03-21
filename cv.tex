@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}       % set main text size
-\usepackage[letterpaper,                % set paper size to letterpaper. change to a4paper for resumes outside of North America
+\usepackage[letterpaper,            % set paper size to letterpaper. change to a4paper for resumes outside of North America
 top=0.5in,                          % specify top page margin
 bottom=0.5in,                       % specify bottom page margin
 left=0.5in,                         % specify left page margin
@@ -11,9 +11,16 @@ right=0.5in]{geometry}              % specify right page margin
 \usepackage{enumitem}               % enable lists for bullet points: itemize and \item
 \usepackage[hidelinks]{hyperref}    % format hyperlinks
 \usepackage{titlesec}               % enable section title customization
-\usepackage{mfirstuc}               % enable uppercasing first letter of references
+\usepackage[normalem]{ulem}         % enable underlining fixes
 \raggedright                        % disable text justification
 \pagestyle{empty}                   % disable page numbering
+
+% underline links
+\usepackage[dvipsnames]{xcolor}
+\hypersetup{
+  pdfborderstyle={/S/U/W 1},
+  urlbordercolor={gray},
+}
 
 % bibliography
 \usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex} % Sorting=none keeps order as cited
@@ -30,7 +37,7 @@ right=0.5in]{geometry}              % specify right page margin
 
 \DeclareCiteCommand{\citea}
   {\boolfalse{citetracker}\boolfalse{pagetracker}\usebibmacro{prenote}}
-  {\underline{\href{\thefield{url}}{\strfield{subtitle}}}}
+  {\href{\thefield{url}}{\strfield{subtitle}}}
   {\multicitedelim}
   {\usebibmacro{postnote}}
 
@@ -61,19 +68,19 @@ right=0.5in]{geometry}              % specify right page margin
 % experience section
 \section*{Experience}
 
-\textbf{Head of Engineering,} \href{https://form3.tech/}{Form3} -- Remote \hfill Nov 2022 -- Present \\
+\textbf{Head of Engineering,} Form3 -- Remote \hfill Nov 2022 -- Present \\
 \vspace{-9pt}
 \begin{itemize}
   \item Led technical strategy and delivery of SEPA Instant, Credit Transfer, and Direct Debit, via RT1 and STEP2. \\
   \item Processed \citea{klarna} at scale for 150M+ customers across more than 500,000 merchants. \\
   \item Drove the vision and development of \citea{swift}, a novel cloud-native Swift connectivity solution. \\
-  \item Spearheaded a new SEPA liqudity model with \citea{barclays}, expanding fintech access to real-time payments. \\
+  \item Spearheaded a new SEPA liquidity model with \citea{barclays}, expanding fintech access to real-time payments. \\
   \item Managed and scaled a 25-engineer team across three squads, serving as a manager-of-managers. \\
   \item Owned end-to-end hiring, mentored via the GROW model, and liaised with customers, vendors, and C-suite. \\
   \item Optimised engineering budgets, reducing costs by 50\% while exceeding customer SLAs. \\
 \end{itemize}
 
-\textbf{Lead Software Engineer,} \href{https://form.tech/}{Form3} -- Remote \hfill Jul 2021 -- Nov 2022 \\
+\textbf{Lead Software Engineer,} Form3 -- Remote \hfill Jul 2021 -- Nov 2022 \\
 \vspace{-9pt}
 \begin{itemize}
   \item Architected and led development of highly available message brokers for \citea{payport}. \\
@@ -81,22 +88,22 @@ right=0.5in]{geometry}              % specify right page margin
   \item Collaborated cross-functionally with enterprise customers to seamlessly migrate Faster Payments infrastructure. \\
 \end{itemize}
 
-\textbf{Senior Software Engineer,} \href{https://form3.tech/}{Form3} -- Remote \hfill May 2019 -- Jul 2021 \\
+\textbf{Senior Software Engineer,} Form3 -- Remote \hfill May 2019 -- Jul 2021 \\
 \vspace{-9pt}
 \begin{itemize}
   \item Contributed to Form3's platform as a backend engineer, primarily Go and Terraform. \\
 \end{itemize}
 
-\textbf{Cloud Improvement Engineer,} \href{https://eviden.com/about-us/legacy-brands/cloudreach/}{Cloudreach} -- Edinburgh, UK \hfill Mar 2018 -- May 2019 \\
+\textbf{Cloud Improvement Engineer,} Cloudreach -- Edinburgh, UK \hfill Mar 2018 -- May 2019 \\
 \vspace{-9pt}
 \begin{itemize}
   \item Consulted for enterprise clients, coaching Agile methodologies while optimising cloud architecture. \\
 \end{itemize}
 
-\textbf{Software Engineer,} \href{https://approov.io/}{Approov (\textit{FKA CriticalBlue})} -- Edinburgh, UK \hfill Jul 2013 -- Feb 2018 \\ 
+\textbf{Software Engineer,} Approov (\textit{FKA CriticalBlue}) -- Edinburgh, UK \hfill Jul 2013 -- Feb 2018 \\ 
 \vspace{-9pt}
 \begin{itemize}
-  \item Brought a novel Runtime Application Self-Protection (RASP) product to market for \citea{bmw} and \citea{sixt} \\
+  \item Brought a novel Runtime Application Self-Protection (RASP) product to market for \citea{bmw} and \citea{sixt}. \\
 \end{itemize}
 
 % skills section
@@ -112,17 +119,17 @@ right=0.5in]{geometry}              % specify right page margin
 % projects section
 \section*{Projects}
 \begin{itemize}
-  \item \underline{\href{https://github.com/oneirism/reverie}{Reverie}:} Tabletop RPG campaign tracker built for game masters, built with Django.
-  \item \underline{\href{https://github.com/oneirism/dicebot}{Dicebot}:} Serverless Telegram bot for polyhedral dice rolling, built with Python.
-  \item Open source contributor to \underline{\href{https://github.com/hashicorp/packer}{Hashicorp Packer}} and \underline{\href{https://github.com/elastic/beats}{Elastic Beats}}.
+  \item \href{https://github.com/oneirism/reverie}{Reverie}: Tabletop RPG campaign tracker built for game masters, built with Django.
+  \item \href{https://github.com/oneirism/dicebot}{Dicebot}: Serverless Telegram bot for polyhedral dice rolling, built with Python.
+  \item Open source contributor to \href{https://github.com/hashicorp/packer}{Hashicorp Packer} and \href{https://github.com/elastic/beats}{Elastic Beats}.
 \end{itemize}
 
 \vspace{-18.5pt}
 
 % skills section
 \section*{Certifications}
-\textbf{AWS Certified Solutions Architect – Professional} \hfill \href{https://www.credly.com/users/devenney}{AWS Training and Certification, 2018} \\
-\textbf{Professional Scrum Master™ I (PSM I)} \hfill \href{https://www.credly.com/users/devenney}{Scrum.org, 2018} \\
+\textbf{AWS Certified Solutions Architect – Professional} \hfill AWS Training and Certification, 2018 \\
+\textbf{Professional Scrum Master™ I (PSM I)} \hfill Scrum.org, 2018 \\
 \textbf{Mental Health First Aid} \hfill St Andrew's First Aid, 2022 \\
 \textbf{Understanding Mental Health (TQUK Level 3)} \hfill West College Scotland, 2022 \\
 
@@ -136,6 +143,6 @@ right=0.5in]{geometry}              % specify right page margin
 
 % volunteering section
 \section*{Volunteering}
-\textbf{\href{https://stemettes.org/}{Stemette Futures}} (Mentor) | \textbf{\href{https://www.emptykitchens.co.uk/}{Empty Kitchens Full Hearts}} (Delivery Driver) \\
+\textbf{Stemette Futures} (Mentor) | \textbf{Empty Kitchens Full Hearts} (Delivery Driver) \\
 
 \end{document}
